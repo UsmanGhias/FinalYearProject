@@ -3,6 +3,22 @@
 
 This repository contains code for our final year project on mapping debris-covered glaciers from satellite imagery using deep learning models, Spatial and Spectral Convolutional Neural Network.
 
+## Table of Contents
+
+1. [Problem Statement](#problem-statement)
+2. [Data](#data)
+4. [Models](#models)
+   - [Convolutional Neural Networks](#convolutional-neural-networks)
+   - [Generative Adversarial Networks](#generative-adversarial-networks)  
+   - [Fully Convolutional Network](#fully-convolutional-network)
+5. [Differetiation Table](#Differetiation-Table)
+6. [Debris-Covered Glaciers] (#Debris-Covered-Glaciers)
+7. [Clean-Ice Glaciers](#Clean-Ice-Glaciers)
+8. [Algorithms](#Algorithms)
+7. [Usage](#usage)
+8. [Results](#results)
+9. [Conclusion](#conclusion)
+
 ## Problem Statement
 
 Mapping debris-covered glaciers using traditional digitalization methods is challenging due to the surface similarity between the glacier and surrounding land. This project aims to accurately map debris-covered glaciers, ice, and land from multispectral satellite images using deep learning. 
