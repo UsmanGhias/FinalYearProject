@@ -72,4 +72,4 @@ Tkinter is part of the Python standard library and is covered by the Python Soft
 ## Acknowledgments
 
 - The Python community for maintaining and improving Tkinter.
-```
+
