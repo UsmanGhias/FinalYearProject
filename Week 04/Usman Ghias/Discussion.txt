@@ -1,0 +1,142 @@
+Important Points:
+Unsupervised Best Generative Models
+Unsupervised Traditional Models
+    KNN (K-Nearest Neighbors)
+
+Unsupervised Generative Models
+    
+
+Label hum models se krvain
+
+Classes ko hum alag alag kar dain
+
+Trends ko hum different Classes bana lain
+
+Graph 1 lakh pixels, 5 trends classes to classes in Unsupervised
+
+1 lakh pixels, 5 classes 5 trends alaag alag alag classify kaisy kar skty hain
+
+_______________________________________________________________________________
+ 
+--> Unsupervised Best Generative Models:
+Variational Autoencoders (VAEs) and Generative Adversarial Networks (GANs)
+--> Traditional Models:
+KNN (K-Nearest Neighbors) --> Classification, Regression
+
+For Clustering: K - Mean and Hierarchical Clustering is helpful
+Time series clustering or anomaly detection
+_______________________________________________________________________________
+Generative Models (Unsupervised)
+Variational Autoencoder (VAE):
+
+```import tensorflow as tf
+from tensorflow.keras import layers, models
+
+# Define the Variational Autoencoder model
+latent_dim = 2  # Set the size of the latent space
+input_shape = (original_dim,)  # Specify the input shape
+
+# Encoder
+encoder_inputs = tf.keras.Input(shape=input_shape)
+x = layers.Dense(256, activation='relu')(encoder_inputs)
+z_mean = layers.Dense(latent_dim)(x)
+z_log_var = layers.Dense(latent_dim)(x)
+
+# Reparameterization trick to sample from the distribution
+z = layers.Lambda(sampling, output_shape=(latent_dim,))([z_mean, z_log_var])
+
+encoder = models.Model(encoder_inputs, [z_mean, z_log_var, z])
+
+# Decoder
+decoder_inputs = tf.keras.Input(shape=(latent_dim,))
+x = layers.Dense(256, activation='relu')(decoder_inputs)
+outputs = layers.Dense(original_dim, activation='sigmoid')(x)
+
+decoder = models.Model(decoder_inputs, outputs)
+
+# VAE
+outputs = decoder(encoder(encoder_inputs)[2])
+vae = models.Model(encoder_inputs, outputs)
+
+# Loss function and training
+reconstruction_loss = tf.keras.losses.binary_crossentropy(encoder_inputs, outputs)
+reconstruction_loss *= original_dim
+kl_loss = 1 + z_log_var - tf.square(z_mean) - tf.exp(z_log_var)
+kl_loss = tf.reduce_sum(kl_loss, axis=-1)
+kl_loss *= -0.5
+vae_loss = tf.reduce_mean(reconstruction_loss + kl_loss)
+
+vae.add_loss(vae_loss)
+vae.compile(optimizer='adam')
+vae.fit(x_train, epochs=epochs, batch_size=batch_size, validation_data=(x_test, None))```
+
+Generative Adversarial Network (GAN):
+
+```import tensorflow as tf
+from tensorflow.keras import layers, models
+
+# Define the Generator
+generator = models.Sequential([
+    layers.Dense(256, activation='relu', input_dim=latent_dim),
+    layers.Dense(original_dim, activation='sigmoid')
+])
+
+# Define the Discriminator
+discriminator = models.Sequential([
+    layers.Dense(256, activation='relu', input_dim=original_dim),
+    layers.Dense(1, activation='sigmoid')
+])
+
+# Define the GAN model
+discriminator.trainable = False  # GAN training only updates the generator
+gan_input = tf.keras.Input(shape=(latent_dim,))
+x = generator(gan_input)
+gan_output = discriminator(x)
+gan = models.Model(gan_input, gan_output)
+
+# Loss function and training
+gan.compile(optimizer='adam', loss='binary_crossentropy')
+gan.fit(x_train, epochs=epochs, batch_size=batch_size, validation_data=(x_test, None))```
+
+
+Restricted Boltzmann Machine (RBM):
+
+
+Traditional Unsupervised Models:
+K-Means Clustering:
+
+``` import numpy as np
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+from sklearn.datasets import make_blobs
+
+# Generate synthetic data for illustration
+X, _ = make_blobs(n_samples=300, centers=4, random_state=42)
+
+# Choose the number of clusters (k)
+k = 4
+
+# Apply K-Means clustering
+kmeans = KMeans(n_clusters=k, random_state=42)
+labels = kmeans.fit_predict(X)
+
+# Visualize the clusters
+plt.scatter(X[:, 0], X[:, 1], c=labels, cmap='viridis')
+plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 1], marker='X', s=200, c='red')
+plt.title('K-Means Clustering')
+plt.show()
+```
+
+
+Hierarchical Clustering:
+
+Principal Component Analysis (PCA):
+
+Self-Organizing Maps (SOM):
+
+Density-Based Spatial Clustering of Applications with Noise (DBSCAN):
+
+Independent Component Analysis (ICA):
+
+
+
