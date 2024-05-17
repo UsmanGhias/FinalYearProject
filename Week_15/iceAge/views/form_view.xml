@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_form_glacier_image" model="ir.ui.view">
+        <field name="name">glacier.image.form</field>
+        <field name="model">glacier.image</field>
+        <field name="arch" type="xml">
+            <form string="Glacier Image Analysis">
+                <header>
+                    <button name="make_prediction" type="object" string="Predict Image" class='btn-primary'/>
+                </header>
+                <sheet>
+                    <group string="Upload and Analyze Image">
+                        <field name="name" placeholder="Enter description here..."/>
+                        <field name="image" widget='image' options="{'accept': '.tif'}"/>
+                        <field name="prediction" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_glacier_image_form" model="ir.actions.act_window">
+        <field name="name">Glacier Image Analysis</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">glacier.image</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <menuitem id="menu_glacier_image_analysis" name="Glacier Image Analysis"
+              parent="base.menu_custom" action="action_glacier_image_form"/>
+</odoo>
+
+
+
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<odoo>-->
+<!--    <record id="glacier_image_form_view" model="ir.ui.view">-->
+<!--        <field name="name">glacier.image.form</field>-->
+<!--        <field name="model">glacier.image</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form string="Glacier Image Analysis">-->
+<!--                <sheet>-->
+<!--                    <group>-->
+<!--                        <field name="name"/>-->
+<!--                        <field name="image" widget='binary' filename="image_filename"/>-->
+<!--                        <field name="prediction" readonly="1"/>-->
+<!--                    </group>-->
+<!--                    <footer>-->
+<!--                        <button name="make_prediction" type="object" string="Predict Image" class='btn-primary'/>-->
+<!--                    </footer>-->
+<!--                </sheet>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+<!--</odoo>-->
+
+
+
+
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<odoo>-->
+<!--    <record id="view_form_glacier_image" model="ir.ui.view">-->
+<!--        <field name="name">glacier.image.form</field>-->
+<!--        <field name="model">glacier.image</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form string="Glacier Image Analysis">-->
+<!--                <sheet>-->
+<!--                    <group string="Upload and Analyze Image">-->
+<!--                        <field name="name" placeholder="Enter description here..."/>-->
+<!--                        <field name="image" widget='image'/>-->
+<!--                    </group>-->
+<!--                    <footer>-->
+<!--                        <button name="make_prediction" type="object" string="Predict Image" class='btn-primary'/>-->
+<!--                        <button string="Clear" class='btn-secondary' special='cancel'/>-->
+<!--                    </footer>-->
+<!--                </sheet>-->
+<!--                <notebook>-->
+<!--                    <page string="Prediction Results">-->
+<!--                        <field name="prediction" readonly="1"/>-->
+<!--                    </page>-->
+<!--                </notebook>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+<!--</odoo>-->

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="glacier_image_form_view" model="ir.ui.view">
+        <field name="name">glacier.image.form</field>
+        <field name="model">glacier.image</field>
+        <field name="arch" type="xml">
+            <form string="Glacier Image Analysis">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="image" widget='binary' filename="image_filename"/>
+                        <field name="prediction" readonly="1"/>
+                    </group>
+                    <footer>
+                        <button name="make_prediction" type="object" string="Predict Image" class='btn-primary'/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
+
+
+
+
+
+<!--<odoo>-->
+<!--    <template id="main_template" name="Glacier Image Analysis">-->
+<!--        <div class="container mt16 o_website_form">-->
+<!--            <h1>Glacier Image Prediction</h1>-->
+<!--            <form action="/glacier/predict" method="post" enctype="multipart/form-data" class="form-horizontal">-->
+<!--                <div class="form-group row">-->
+<!--                    <label class="col-sm-3 col-form-label" for="image_upload">Upload your image:</label>-->
+<!--                    <div class="col-sm-9">-->
+<!--                        <input type="file" name="image_upload" id="image_upload" required="required" class="form-control"/>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="form-group text-center">-->
+<!--                    <button type="submit" class="btn btn-primary">Predict Image</button>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--            <div t-if="request.session.prediction_result">-->
+<!--                <h2>Prediction Result:</h2>-->
+<!--                <p t-esc="request.session.prediction_result"/>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </template>-->
+<!--</odoo>-->
