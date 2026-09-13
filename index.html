@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinalYearProject - Usman Ghias</title>
+  <meta name="description" content="Final Year Project (Jupyter Notebook).">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #090d16;
+      --bg-card: #111827;
+      --bg-card-hover: #1f2937;
+      --border-subtle: #1e293b;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --accent: #38bdf8;
+      --accent-hover: #0284c7;
+      --code-bg: #030712;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.65;
+      font-size: 16px;
+      padding-bottom: 60px;
+    }
+    header.site-header {
+      background: rgba(17, 24, 39, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .header-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header-logo {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--text-main);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .header-logo span {
+      color: var(--accent);
+    }
+    .header-links {
+      display: flex;
+      gap: 16px;
+    }
+    .header-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .header-links a:hover {
+      color: var(--text-main);
+    }
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 36px 24px;
+    }
+    .hero {
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 32px;
+      margin-bottom: 36px;
+    }
+    .meta-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #94a3b8;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+    .badge.lang {
+      color: var(--accent);
+      border-color: rgba(56, 189, 248, 0.3);
+      background: rgba(56, 189, 248, 0.08);
+    }
+    .badge.type {
+      color: #a78bfa;
+      border-color: rgba(167, 139, 250, 0.3);
+      background: rgba(167, 139, 250, 0.08);
+    }
+    h1.project-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+    p.project-desc {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 780px;
+      margin-bottom: 24px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 18px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #090d16;
+    }
+    .btn-primary:hover {
+      background: #7dd3fc;
+    }
+    .btn-secondary {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+    }
+    .btn-secondary:hover {
+      background: var(--bg-card-hover);
+      border-color: #334155;
+    }
+    .content-area {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 36px 40px;
+    }
+    .content-area h1, .content-area h2, .content-area h3, .content-area h4 {
+      color: #ffffff;
+      margin-top: 1.8rem;
+      margin-bottom: 0.9rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .content-area h1 { font-size: 1.6rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px; }
+    .content-area h2 { font-size: 1.35rem; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 6px; }
+    .content-area h3 { font-size: 1.15rem; }
+    .content-area p {
+      margin-bottom: 1.1rem;
+      color: #d1d5db;
+    }
+    .content-area ul, .content-area ol {
+      margin-bottom: 1.2rem;
+      padding-left: 24px;
+      color: #d1d5db;
+    }
+    .content-area li {
+      margin-bottom: 6px;
+    }
+    .content-area pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      margin-bottom: 1.4rem;
+    }
+    .content-area code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9em;
+      background: rgba(255, 255, 255, 0.07);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #7dd3fc;
+    }
+    .content-area pre code {
+      background: transparent;
+      padding: 0;
+      border-radius: 0;
+      color: #e5e7eb;
+    }
+    .content-area blockquote {
+      border-left: 3px solid var(--accent);
+      padding-left: 16px;
+      margin: 1.2rem 0;
+      color: #9ca3af;
+      font-style: italic;
+    }
+    .content-area table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.4rem;
+    }
+    .content-area th, .content-area td {
+      padding: 10px 14px;
+      border: 1px solid var(--border-subtle);
+      text-align: left;
+    }
+    .content-area th {
+      background: #1f2937;
+      color: #ffffff;
+      font-weight: 600;
+    }
+    .content-area img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+      margin: 12px 0;
+    }
+    footer.site-footer {
+      margin-top: 60px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+    footer.site-footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    footer.site-footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="https://usmanghias.github.io/Portfolio/" class="header-logo">Usman <span>Ghias</span></a>
+      <div class="header-links">
+        <a href="https://github.com/UsmanGhias/FinalYearProject" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://usmanghias.github.io/Portfolio/" target="_blank" rel="noopener">Portfolio</a>
+        <a href="https://codcrafters.org" target="_blank" rel="noopener">CODCrafters</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="meta-badges">
+        <span class="badge lang">Jupyter Notebook</span>
+        <span class="badge ">Open Source</span>
+        <span class="badge">★ 2 Stars</span>
+        <span class="badge">Branch: main</span>
+      </div>
+      <h1 class="project-title">FinalYearProject</h1>
+      <p class="project-desc">Final Year Project (Jupyter Notebook).</p>
+      <div class="hero-actions">
+        <a href="https://github.com/UsmanGhias/FinalYearProject" class="btn btn-primary" target="_blank" rel="noopener">View on GitHub</a>
+        <a href="https://github.com/UsmanGhias/FinalYearProject/issues" class="btn btn-secondary" target="_blank" rel="noopener">Issues & Feedback</a>
+      </div>
+    </section>
+
+    <article class="content-area">
+      <h1 id="final-year-project">Final Year Project</h1>
+<h2 id="debris-covered-glacier-mapping-using-deep-learning">Debris-Covered Glacier Mapping using Deep Learning</h2>
+<p>This repository contains the code for our final year project, which focuses on mapping debris-covered glaciers from satellite imagery using deep learning models, specifically Spatial and Spectral Convolutional Neural Networks.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#problem-statement">Problem Statement</a></li>
+<li><a href="#data">Data</a></li>
+<li><a href="#models">Models</a></li>
+<li><a href="#convolutional-neural-networks">Convolutional Neural Networks</a></li>
+<li><a href="#generative-adversarial-networks">Generative Adversarial Networks</a></li>
+<li><a href="#fully-convolutional-network">Fully Convolutional Network</a></li>
+<li><a href="#differentiation-table">Differentiation Table</a></li>
+<li><a href="#debris-covered-glaciers">Debris-Covered Glaciers</a></li>
+<li><a href="#clean-ice-glaciers">Clean-Ice Glaciers</a></li>
+<li><a href="#quantitative-results">Quantitative Results</a></li>
+<li><a href="#algorithms">Algorithms</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#results">Results</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#future-work">Future Work</a></li>
+</ol>
+<h2 id="problem-statement">Problem Statement</h2>
+<p>Mapping debris-covered glaciers using traditional digitalization methods is challenging due to the surface similarity between the glacier and surrounding land. This project aims to accurately map debris-covered glaciers, ice, and land from multispectral satellite images using deep learning.</p>
+<h2 id="data">Data</h2>
+<p>The data used consists of Sentinel-2 satellite images covering the Shisper glacier region in Pakistan. It contains 10 spectral bands at 10m resolution acquired at different time periods from 2018-2019.</p>
+<h2 id="models">Models</h2>
+<p>The following deep learning models are used:</p>
+<h3 id="convolutional-neural-networks">Convolutional Neural Networks</h3>
+<p>We use <strong>Convolutional Neural Networks (CNNs)</strong> to automatically extract spatial and spectral features from the satellite images. CNNs are ideal for imagery data as they can capture localized features via convolution filters and pool the features hierarchically to build robust representations.</p>
+<p>Our model uses two CNN streams - a 1D CNN to extract spectral features from pixel vectors, and a multiscale 2D CNN to extract spatial features using varying kernel sizes. This allows combining both spectral and complementary spatial information efficiently.</p>
+<h3 id="generative-adversarial-networks">Generative Adversarial Networks</h3>
+<p>Since debris-covered glacier pixels are underrepresented compared to land/ice pixels, we use a <strong>Generative Adversarial Network (GAN)</strong> to augment the minority glacier class and balance the training data.</p>
+<p>GANs consist of a generator and discriminator network competing against each other. The generator creates augmented glacier images to fool the discriminator, while the discriminator tries to identify real vs. fake images. This training stabilizes once the generated images are indistinguishable from real ones.</p>
+<h3 id="fully-convolutional-network">Fully Convolutional Network</h3>
+<p>The final classification map is produced using a <strong>Fully Convolutional Network (FCN)</strong>. FCNs are convolutional networks that take input of any size and output classification maps via end-to-end learning. This allows efficient pixel-wise classification unlike patch-based CNNs. Our FCN takes the concatenated spatial-spectral feature vectors from the CNNs and classifies each pixel into glacier, ice, or land.</p>
+<h2 id="differentiation-table">Differentiation Table</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Spatial CNN</th>
+<th>Spectral CNN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Input Data</strong></td>
+<td>2D image patches (width x height x channels)</td>
+<td>1D vectors of pixel values across channels</td>
+</tr>
+<tr>
+<td><strong>Capture</strong></td>
+<td>Local spatial patterns and shapes in images</td>
+<td>Spectral signatures of materials/objects</td>
+</tr>
+<tr>
+<td><strong>Convolution</strong></td>
+<td>2D kernels convolve across width and height</td>
+<td>1D kernels convolve across channels/spectra</td>
+</tr>
+<tr>
+<td><strong>Kernels Learn</strong></td>
+<td>Visual patterns and textures</td>
+<td>Distinct spectral profiles</td>
+</tr>
+<tr>
+<td><strong>Pooling</strong></td>
+<td>Aggregate responses spatially</td>
+<td>Aggregate responses spectrally</td>
+</tr>
+<tr>
+<td><strong>Architecture</strong></td>
+<td>Standard 2D CNN (LeNet, AlexNet, VGG, etc)</td>
+<td>1D CNN with 1D conv and pool layers</td>
+</tr>
+<tr>
+<td><strong>Use Cases</strong></td>
+<td>Image classification, segmentation</td>
+<td>Hyperspectral image analysis, material detection</td>
+</tr>
+<tr>
+<td><strong>Advantages</strong></td>
+<td>Translation invariance, efficient for computer vision</td>
+<td>Sensitive to subtle spectral differences</td>
+</tr>
+<tr>
+<td><strong>Disadvantages</strong></td>
+<td>No spectral info, sensitive to rotations</td>
+<td>Loses all spatial context</td>
+</tr>
+<tr>
+<td><strong>Examples</strong></td>
+<td>- ImageNet classification</td>
+<td>- Crop type mapping</td>
+</tr>
+<tr>
+<td></td>
+<td>- Semantic segmentation</td>
+<td>- Mineral identification</td>
+</tr>
+</tbody>
+</table>
+<h2 id="debris-covered-glaciers">Debris-Covered Glaciers</h2>
+<ul>
+<li>Debris-covered glaciers have significant amounts of rock debris and sediment covering the ice surface, which can range from a few centimeters to several meters thick.</li>
+<li>The debris insulates the underlying ice, affecting ablation rates. Thin debris (&lt; 2cm) enhances melt, while thick debris (&gt; 5cm) inhibits melt by providing insulation.</li>
+<li>Boundaries with surrounding terrain are obscure, making delineation difficult, and debris cover obscures the glacier outline visually.</li>
+</ul>
+<h2 id="clean-ice-glaciers">Clean-Ice Glaciers</h2>
+<ul>
+<li>Clean-ice glaciers have no debris cover present, and the glacier surface is exposed as blue or white ice.</li>
+<li>Surface topography is comparatively smooth, with ponds and ice cliffs generally absent, though crevasses may be present.</li>
+<li>Glacier boundaries are well-defined and easily identifiable in satellite images. Ice has a distinct reflectance from terrain.</li>
+<li>Physical processes like fractures, crevassing, plastic deformation, etc., operate freely on clean-ice glaciers, and glacier dynamics are not impacted by debris.</li>
+</ul>
+<h1 id="quantitative-results">Quantitative Results</h1>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Accuracy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CNN + GAN</td>
+<td><strong>96%</strong></td>
+</tr>
+<tr>
+<td>SVM</td>
+<td>92%</td>
+</tr>
+<tr>
+<td>Random Forest</td>
+<td>94%</td>
+</tr>
+</tbody>
+</table>
+<h1 id="algorithms">Algorithms</h1>
+<h2 id="approaches">Approaches</h2>
+<ul>
+<li>Spectral-spatial feature extraction</li>
+<li>Multiscale spatial CNNs</li>
+<li>GAN-based data augmentation</li>
+<li>Fully convolutional classifier</li>
+</ul>
+<h3 id="k-nearest-neighbors-knn">k-Nearest Neighbors (kNN):</h3>
+<ul>
+<li>Non-parametric, instance-based supervised learning algorithm.</li>
+<li>Distance metrics like Euclidean distance used to find nearest neighbors.</li>
+</ul>
+<h3 id="random-forest-rf">Random Forest (RF):</h3>
+<ul>
+<li>Ensemble method combining multiple decision trees.</li>
+<li>Each tree is trained on a random subset of features and data.</li>
+</ul>
+<h3 id="support-vector-machine-svm">Support Vector Machine (SVM):</h3>
+<ul>
+<li>Discriminative classifier that finds the optimal</li>
+</ul>
+<p>hyperplane to separate classes.
+- Margin maximization and regularization prevent overfitting.</p>
+<h3 id="multilayer-perceptron-mlp">Multilayer Perceptron (MLP):</h3>
+<ul>
+<li>Feedforward artificial neural network with multiple layers.</li>
+<li>Uses backpropagation to train via gradient descent.</li>
+<li>Can model complex nonlinear functions and high-dimensional interactions.</li>
+</ul>
+<h3 id="gradient-boosting">Gradient Boosting:</h3>
+<ul>
+<li>Trees are trained sequentially, each fitting the residual errors from the previous tree.</li>
+<li>Robust to outliers, rarely overfits. Slow prediction for large datasets.</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<p>The models are implemented in Keras with the Tensorflow backend. To train a model:</p>
+<pre><code>python train.py --model cnn
+</code></pre>
+<p>To evaluate on test data:</p>
+<pre><code>python test.py --model cnn --weights path/to/weights.h5
+</code></pre>
+<h2 id="results">Results</h2>
+<p>Our proposed model achieves XX% accuracy in classifying debris-covered glaciers from satellite imagery. Some sample results on the test regions are shown below:</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Our deep learning approach, which combines CNNs, GANs, and FCNs, can accurately map debris-covered glaciers from multispectral satellite imagery. The automatic spatial-spectral feature learning capabilities make it superior to traditional digitalization methods.</p>
+<h2 id="future-work">Future Work</h2>
+<ul>
+<li>Incorporate elevation data</li>
+<li>Explore recurrent networks to leverage temporal patterns</li>
+<li>Model uncertainty quantification</li>
+<li>Detect glacier lakes and flows</li>
+</ul>
+    </article>
+
+    <footer class="site-footer">
+      <p>Project documentation maintained by <a href="https://github.com/UsmanGhias">Usman Ghias</a>, Founder & Lead Architect at <a href="https://codcrafters.org">CODCrafters</a>.</p>
+    </footer>
+  </main>
+</body>
+</html>
